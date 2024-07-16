@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Repository -->
+    <bean id="panelRepository" class="learn.farm.data.PanelFileRepository">
+        <constructor-arg value="./data/panels.csv"/>
+    </bean>
+
+    <!-- Service -->
+    <bean id="panelService" class="learn.farm.domain.PanelService">
+        <constructor-arg ref="panelRepository"/>
+    </bean>
+
+    <!-- View -->
+    <bean id="view" class="learn.farm.ui.View">
+    </bean>
+
+    <!-- Controller -->
+    <bean class="learn.farm.ui.Controller">
+        <constructor-arg ref="view"/>
+        <constructor-arg ref="panelService"/>
+    </bean>
+</beans>
